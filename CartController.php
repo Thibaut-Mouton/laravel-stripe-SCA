@@ -10,7 +10,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class CartController extends Controller
 {
 
-    // When you click on "
+    // When the customer wants to pay his cart, this function is triggered
     public function stripeSCA()
     {
         \Stripe\Stripe::setApiKey('your-key');
@@ -20,21 +20,13 @@ class CartController extends Controller
             'amount' => Cart::total() * 100,
             'currency' => 'EUR',
         ]);
-
+        // You will need intent to pass PaymentIntent ID in payment form
         return view('shop.checkout', compact('intent', 'currentCart'));
     }
 
-    // After payment
+    // After payment, you can trigger email automatically
     public function check(Request $request)
     {
-        foreach (Cart::content() as $item) {
-            $decreaseDB = Boutique::where('id', '=', $item->id)->first();
-            if (isset($decreaseDB)) {
-                $decreaseDB->quantite = $decreaseDB->quantite - $item->qty;
-                $decreaseDB->save();
-            }
-        }
-
         \Stripe\PaymentIntent::update(
             $request->intent_id,
             ['receipt_email' => $request->mail]
