@@ -15,6 +15,9 @@ laravel-stripe-SCA
 ## About Stripe
 
 Stripe is the best software platform for running an internet business. They handle billions of dollars every year for forward-thinking businesses around the world. 
+
+## What's new on Stripe ?
+
 On September 14, 2019, PSD2 regulation introduced Strong Customer Authentication (SCA) requirements for many online payments made by European customers, to help reduce fraud. To ensure payments aren’t declined, businesses need to build an extra layer of authentication into online card payments, unless transaction-specific exemptions apply.
 
 ## Features 
