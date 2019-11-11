@@ -14,6 +14,9 @@
 
 Auth::routes();
 
-Route::post('charge', 'CartController@check')->name('cart.charge');
+// First route
 Route::get('secure', 'CartController@stripeSCA')->name('cart.new');
+// Stripe.js is called before post route
+Route::post('charge', 'CartController@check')->name('cart.charge');
+
 
